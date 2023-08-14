@@ -3,7 +3,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 import time
 import argparse
-from selenium.webdriver.common.by import By
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+ewayBillPass = os.getenv('EWAY_BILL_PASSWORD')
 
 driver = webdriver.Chrome('/Users/mayankkhanna/Downloads/chromedriver_mac_arm64/chromedriver')
 
@@ -14,7 +18,7 @@ def generate_new_eway_bill(docNo, gst, taxVal, hsn, transID):
     password_field = driver.find_element_by_id("txt_password")
 
     username_field.send_keys("geeta9873")
-    password_field.send_keys("Geeta@9873")
+    password_field.send_keys(ewayBillPass)
     time.sleep(8)
     driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
     website_url = "https://www.ewaybillgst.gov.in/BillGeneration/BillGeneration.aspx"
