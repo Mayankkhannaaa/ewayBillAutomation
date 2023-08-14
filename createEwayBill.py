@@ -15,12 +15,14 @@ driver = webdriver.Chrome('/Users/mayankkhanna/Downloads/chromedriver_mac_arm64/
 def generate_new_eway_bill(docNo, gst, taxVal, hsn, transID):
     website_url = "https://www.ewaybillgst.gov.in/BillGeneration/BillGeneration.aspx"
     driver.get(website_url)
+
     username_field = driver.find_element_by_id("txt_username")
     password_field = driver.find_element_by_id("txt_password")
 
     username_field.send_keys(ewayBillID)
     password_field.send_keys(ewayBillPass)
     time.sleep(8)
+
     driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
     website_url = "https://www.ewaybillgst.gov.in/BillGeneration/BillGeneration.aspx"
     driver.get(website_url)
@@ -35,15 +37,19 @@ def generate_new_eway_bill(docNo, gst, taxVal, hsn, transID):
     txtDocNo_field.send_keys(docNo)
     billToGST_field.send_keys(gst)
     time.sleep(1)
+
     taxableValue_field.send_keys(taxVal)
     time.sleep(0.5)
+
     hsn_field.send_keys(hsn)
     dropdown_IGST = Select(driver.find_element_by_id("SelectIGST_1"))
     desired_option = "5"
     dropdown_IGST.select_by_visible_text(desired_option)
     time.sleep(0.2)
+
     transporterID_field.send_keys(transID)
     time.sleep(0.6)
+
     scroll_distance = 500
     driver.execute_script(f"window.scrollBy(0, {scroll_distance});")
 
