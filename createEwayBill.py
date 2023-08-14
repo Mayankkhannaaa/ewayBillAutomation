@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 ewayBillPass = os.getenv('EWAY_BILL_PASSWORD')
+ewayBillID =os.getenv('EWAY_BILL_ID')
 
 driver = webdriver.Chrome('/Users/mayankkhanna/Downloads/chromedriver_mac_arm64/chromedriver')
 
@@ -17,7 +18,7 @@ def generate_new_eway_bill(docNo, gst, taxVal, hsn, transID):
     username_field = driver.find_element_by_id("txt_username")
     password_field = driver.find_element_by_id("txt_password")
 
-    username_field.send_keys("geeta9873")
+    username_field.send_keys(ewayBillID)
     password_field.send_keys(ewayBillPass)
     time.sleep(8)
     driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
