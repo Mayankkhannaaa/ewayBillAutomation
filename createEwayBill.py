@@ -7,9 +7,13 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
+# getting th eway bill user id
 ewayBillPass = os.getenv('EWAY_BILL_PASSWORD')
+# getting th eway bill password
 ewayBillID =os.getenv('EWAY_BILL_ID')
 
+
+# initializing the webdriver
 driver = webdriver.Chrome('/Users/mayankkhanna/Downloads/chromedriver_mac_arm64/chromedriver')
 
 def generate_new_eway_bill(docNo, gst, taxVal, hsn, transID):
@@ -38,7 +42,7 @@ def generate_new_eway_bill(docNo, gst, taxVal, hsn, transID):
     billToGST_field.send_keys(gst)
     time.sleep(1)
 
-    taxableValue_field.send_keys(taxVal)
+    taxableValue_field.send_keys(str(taxVal))
     time.sleep(0.5)
 
     hsn_field.send_keys(hsn)
@@ -83,7 +87,7 @@ def main():
     parser = argparse.ArgumentParser(description='Generate Eway Bill')
     parser.add_argument('--docNo', type=str, help='Doc No')
     parser.add_argument('--gst', type=str, help='GST of the client')
-    parser.add_argument('--taxVal', type=int, help='Taxable Value')
+    parser.add_argument('--taxVal', type=float, help='Taxable Value')
     parser.add_argument('--hsn', type=str, help='HSN Code')
     parser.add_argument('--transID', type=str, help='Transporter ID')
 
