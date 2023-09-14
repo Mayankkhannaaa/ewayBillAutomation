@@ -14,7 +14,7 @@ ewayBillID =os.getenv('EWAY_BILL_ID')
 
 
 # initializing the webdriver
-driver = webdriver.Chrome('/Users/mayankkhanna/Downloads/chromedriver_mac_arm64/chromedriver')
+driver = webdriver.Chrome('/Users/mayankkhanna/Downloads/chromedriver-mac-arm641/chromedriver')
 
 def generate_new_eway_bill(docNo, gst, taxVal, hsn, transID):
     website_url = "https://www.ewaybillgst.gov.in/BillGeneration/BillGeneration.aspx"
